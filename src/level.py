@@ -1,8 +1,8 @@
-from resources import black
+from resources import black, grass_tile
 
 
 class Level:
-    
+
     def __init__(self, w, h, tile_w, tile_h, buffer):
         self.w = w
         self.h = h
@@ -29,11 +29,14 @@ class Level:
                 if tile == 0:
                     img = black
 
+                if tile == 1:
+                    img = grass_tile
+
                 img.blit(c * img.width, (self.h - 1 - r) * img.height)
 
     def what_is(self, x, y):
         return self.buffer[y // self.tile_h][x // self.tile_w]
-    
+
     def update(self, dt):
         pass
 
