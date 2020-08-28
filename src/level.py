@@ -1,3 +1,6 @@
+from resources import black
+
+
 class Level:
     
     def __init__(self, w, h, tile_w, tile_h, buffer):
@@ -24,8 +27,15 @@ class Level:
                 img = ' '
                 tile = self.buffer[r][c]
                 if tile == 0:
-                    img = None
-                    img.blit()
+                    img = black
+
+                img.blit(c * img.width, (self.h - 1 - r) * img.height)
 
     def what_is(self, x, y):
         return self.buffer[y // self.tile_h][x // self.tile_w]
+    
+    def update(self, dt):
+        pass
+
+    def on_key_press(self, symbol, modifiers):
+        pass
