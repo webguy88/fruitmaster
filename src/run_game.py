@@ -78,13 +78,16 @@ def update(dt):
         if keys[key.A]:
             player.change_direction(1, -170, 0)
             vx -= 170 * dt
+            player.moving = True
 
         if keys[key.D]:
             player.change_direction(0, 170, 0)
             vx += 170 * dt
+            player.moving = True
 
         if not is_key_pressed():
             player.change_direction(player.direction, 0, 0)
+            player.moving = False
 
         camera.position = (camera.offset_x + vx,
                            camera.offset_y + vy)
@@ -102,7 +105,7 @@ keys = key.KeyStateHandler()
 window.push_handlers(keys)
 
 player = Player()
-lvl1 = Level1(1, 1, 1, 1, map1)
+lvl1 = Level1(1, 1, 64, 64, map1)
 engine = Engine(lvl1)
 camera = Camera(scroll_speed=5)
 
