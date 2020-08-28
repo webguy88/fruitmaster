@@ -4,6 +4,7 @@ from pyglet import clock
 from pyglet.window import Window
 from pyglet.window import key
 
+from player import Player
 from level1 import Level1, map1
 from engine import Engine
 from camera import Camera
@@ -57,6 +58,7 @@ def on_draw():
     window.clear()
     camera.begin()
     engine.draw()
+    player.draw()
     camera.end()
 
 
@@ -68,12 +70,24 @@ def on_key_press(symbol, modifiers):
 @window.event
 def update(dt):
     engine.update(dt)
+    player.update(dt)
     
-    '''
-    camera.position = (camera.offset_x + vx,
-                       camera.offset_y + vy)
-    '''
+    if engine.in_game:
+        vx = vy = 0
 
+        if keys[key.A]:
+            player.change_direction(1, -170, 0)
+            vx -= 170 * dt
+
+        if keys[key.D]:
+            player.change_direction(0, 170, 0)
+            vx += 170 * dt
+
+        if not is_key_pressed():
+            player.change_direction(player.direction, 0, 0)
+
+        camera.position = (camera.offset_x + vx,
+                           camera.offset_y + vy)
 
 def is_key_pressed():
     for _, v in keys.items():
@@ -86,6 +100,7 @@ def is_key_pressed():
 keys = key.KeyStateHandler()
 window.push_handlers(keys)
 
+player = Player()
 lvl1 = Level1(1, 1, 1, 1, map1)
 engine = Engine(lvl1)
 camera = Camera(scroll_speed=5)
