@@ -20,36 +20,36 @@ window = Window(SCREENW, SCREENH, caption="Fruit Master")
 
 
 # Anchoring camera position
-def position_camera(self, camera: Camera, position: tuple=(0, 0),
-                    zoom: float=1, min_pos: tuple=(None, None),
-                    max_pos: tuple=(None, None)):
+def position_camera(self, camera: Camera, position: tuple = (0, 0),
+                    zoom: float = 1, min_pos: tuple = (None, None),
+                    max_pos: tuple = (None, None)):
 
-        zoom = min(window.width // self.DEFAULT_SIZE[0],
-                   window.height // self.DEFAULT_SIZE[1]) * zoom
+    zoom = min(window.width // self.DEFAULT_SIZE[0],
+               window.height // self.DEFAULT_SIZE[1]) * zoom
 
-        if self.camera.zoom != zoom:
-            self.camera.zoom = zoom
+    if self.camera.zoom != zoom:
+        self.camera.zoom = zoom
 
-            x = -window.width // 2 // zoom
-            y = -window.height // 2 // zoom
+        x = -window.width // 2 // zoom
+        y = -window.height // 2 // zoom
 
-            target_x = position[0]
-            target_y = position[1]
+        target_x = position[0]
+        target_y = position[1]
 
-            if min_pos[0] is not None:
-                target_x = max(target_x, min_pos[0])
-            if min_pos[1] is not None:
-                target_y = max(target_y, min_pos[1])
-            if max_pos[0] is not None:
-                target_x = min(target_x, max_pos[0])
-            if max_pos[1] is not None:
-                target_y = min(target_y, max_pos[1])
+        if min_pos[0] is not None:
+            target_x = max(target_x, min_pos[0])
+        if min_pos[1] is not None:
+            target_y = max(target_y, min_pos[1])
+        if max_pos[0] is not None:
+            target_x = min(target_x, max_pos[0])
+        if max_pos[1] is not None:
+            target_y = min(target_y, max_pos[1])
 
-            x += target_x
-            y += target_y
+        x += target_x
+        y += target_y
 
-            if self.camera.position != (x, y):
-                self.camera.position = (x, y)
+        if self.camera.position != (x, y):
+            self.camera.position = (x, y)
 
 
 # Window events
@@ -71,7 +71,7 @@ def on_key_press(symbol, modifiers):
 def update(dt):
     engine.update(dt)
     player.update(dt)
-    
+
     if engine.in_game:
         vx = vy = 0
 
@@ -88,6 +88,7 @@ def update(dt):
 
         camera.position = (camera.offset_x + vx,
                            camera.offset_y + vy)
+
 
 def is_key_pressed():
     for _, v in keys.items():

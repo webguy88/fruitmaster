@@ -1,8 +1,8 @@
 from level import Level
 
 map1 = [
-    [0],
-    [0]
+    [1],
+    [1]
 ]
 
 
@@ -21,4 +21,3 @@ class Level1(Level):
 
     def what_is(self, x, y):
         return self.buffer[y // self.tile_h][x // self.tile_w]
-
