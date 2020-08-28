@@ -106,3 +106,14 @@ class Screen:
     def enter(self):
         pass
 
+
+def center_image(img):
+    img.anchor_x = img.width // 2
+    img.anchor_y = img.height // 2
+
+
+def center_images(i_list):
+    for img in i_list:
+        img.anchor_x = img.width // 2
+        img.anchor_y = img.height // 2
+
