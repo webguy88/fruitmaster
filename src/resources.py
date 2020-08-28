@@ -1,4 +1,3 @@
-import pyglet
 from pyglet import resource
 from pyglet import sprite
 
