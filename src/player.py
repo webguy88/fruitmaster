@@ -77,3 +77,5 @@ class Player:
         self.vx = vx
         self.vy = vy
 
+
+engine = Engine()
