@@ -1,5 +1,5 @@
 import pyglet
-from pyglet_gl import gl
+from pyglet.gl import gl
 
 
 class Rect:
