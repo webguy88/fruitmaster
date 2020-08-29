@@ -124,5 +124,5 @@ class Player:
         self.vy = vy
 
 
-lvl1 = Level1(1, 1, 64, 64, map1)
+lvl1 = Level1(6, 6, 64, 64, map1)
 engine = Engine(lvl1)
