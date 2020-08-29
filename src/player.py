@@ -115,12 +115,6 @@ class Player:
         if obj_hit is None:
             self.vy -= 5
 
-        self.x = new_x
-        self.y = new_y
-        self.spr.x = self.x
-        self.spr.y = self.y
-        self.hitbox = new_hitbox
-
         # Check sprite
         if not self.moving and \
            self.direction == "right" or self.direction == 0:
@@ -137,6 +131,12 @@ class Player:
         if self.moving and \
            self.direction == "left" or self.direction == 1:
             self.spr = self.w_left
+
+        self.x = new_x
+        self.y = new_y
+        self.spr.x = self.x
+        self.spr.y = self.y
+        self.hitbox = new_hitbox
 
     def change_direction(self, direction, vx):
         self.direction = direction
