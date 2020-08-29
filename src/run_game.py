@@ -75,15 +75,52 @@ def update(dt):
     if engine.in_game:
         vx = vy = 0
 
+        # Linear movement
+        if keys[key.W]:
+            player.change_direction(0, 0, 170)
+            vy += 170 * dt
+            player.moving = True
+
         if keys[key.A]:
             player.change_direction(1, -170, 0)
             vx -= 170 * dt
+            player.moving = True
+
+        if keys[key.S]:
+            player.change_direction(1, 0, -170)
+            vy -= 170 * dt
             player.moving = True
 
         if keys[key.D]:
             player.change_direction(0, 170, 0)
             vx += 170 * dt
             player.moving = True
+
+        # Diagonal movement
+        if keys[key.W] and keys[key.A]:
+            player.change_direction(1, -170, 170)
+            player.moving = True
+
+        if keys[key.W] and keys[key.D]:
+            player.change_direction(0, 170, 170)
+            player.moving = True
+
+        if keys[key.S] and keys[key.A]:
+            player.change_direction(1, -170, -170)
+            player.moving = True
+
+        if keys[key.S] and keys[key.D]:
+            player.change_direction(0, 170, -170)
+            player.moving = True
+
+        # Avoid movement with two keys
+        if keys[key.W] and keys[key.S]:
+            player.change_direction(player.direction, 0, 0)
+            player.moving = False
+
+        if keys[key.A] and keys[key.D]:
+            player.change_direction(player.direction, 0, 0)
+            player.moving = False
 
         if not is_key_pressed():
             player.change_direction(player.direction, 0, 0)
