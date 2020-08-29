@@ -1,5 +1,12 @@
+import pyglet
 from pyglet import resource
 from pyglet import sprite
+from pyglet.gl import gl
+
+gl.glEnable(gl.GL_TEXTURE_2D)
+gl.glTexParameteri(gl.GL_TEXTURE_2D, gl.GL_TEXTURE_MAG_FILTER, gl.GL_NEAREST)
+pyglet.image.Texture.default_mag_filter = gl.GL_NEAREST
+pyglet.image.Texture.default_min_filter = gl.GL_NEAREST
 
 resource.path = ['../resources', '../resources/art', '../resources/sounds']
 resource.reindex()
