@@ -72,8 +72,8 @@ class Player:
                                                            loop=True)
 
     def __init__(self):
-        self.x = 120
-        self.y = 120
+        self.x = 480
+        self.y = 320
         self.vx = 0
         self.vy = 0
         self.direction = "right"
