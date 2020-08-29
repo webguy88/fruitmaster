@@ -107,7 +107,7 @@ class Player:
         if obj_hit is not None:
             self.vx = 0
             self.vy = 0
-            self.spr = self.i_right if self.direction == "right" else self.i_left
+            self.spr = self.i_right if self.direction == 0 else self.i_left
             self.spr.x = self.x
             self.spr.y = self.y
             return
