@@ -105,7 +105,7 @@ keys = key.KeyStateHandler()
 window.push_handlers(keys)
 
 player = Player()
-lvl1 = Level1(1, 1, 64, 64, map1)
+lvl1 = Level1(6, 6, 64, 64, map1)
 engine = Engine(lvl1)
 camera = Camera(scroll_speed=5)
 
