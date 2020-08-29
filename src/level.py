@@ -1,4 +1,4 @@
-from resources import black, grass_tile
+from resources import grass_tile
 
 
 class Level:
@@ -27,9 +27,6 @@ class Level:
                 img = ' '
                 tile = self.buffer[r][c]
                 if tile == 0:
-                    img = black
-
-                if tile == 1:
                     img = grass_tile
 
                 img.blit(c * img.width, (self.h - 1 - r) * img.height)
