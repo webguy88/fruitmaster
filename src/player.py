@@ -87,6 +87,7 @@ class Player:
 
     def draw(self):
         self.spr.draw()
+        self.hitbox.draw()
 
     def detect_collision(self, hitbox):
         for obj in engine.current_screen.obj_list:
@@ -96,10 +97,10 @@ class Player:
     def update(self, dt):
         new_x = self.x + self.vx * dt
         new_y = self.y + self.vy * dt
-        new_hitbox = Region(new_x - 54 // 2,
-                            new_y - 112 // 2,
-                            width=48,
-                            height=102)
+        new_hitbox = Region(x=new_x - 54 // 2,
+                            y=new_y - 112 // 2,
+                            w=48,
+                            h=102)
 
         obj_hit = self.detect_collision(new_hitbox)
 
@@ -110,6 +111,9 @@ class Player:
             self.spr.x = self.x
             self.spr.y = self.y
             return
+
+        if obj_hit is None:
+            self.vy -= 5
 
         self.x = new_x
         self.y = new_y
@@ -134,10 +138,9 @@ class Player:
            self.direction == "left" or self.direction == 1:
             self.spr = self.w_left
 
-    def change_direction(self, direction, vx, vy):
+    def change_direction(self, direction, vx):
         self.direction = direction
         self.vx = vx
-        self.vy = vy
 
 
 lvl1 = Level1(6, 6, 64, 64, map1)
