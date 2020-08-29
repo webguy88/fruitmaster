@@ -81,6 +81,7 @@ class Player:
         self.i_left = sprite.Sprite(self.idle_left)
         self.w_right = sprite.Sprite(self.walk_right)
         self.w_left = sprite.Sprite(self.walk_left)
+        self.hitbox = Region(self.x, self.y, 54, 112)
         self.spr = self.i_right
         self.moving = False
 
@@ -95,11 +96,26 @@ class Player:
     def update(self, dt):
         new_x = self.x + self.vx * dt
         new_y = self.y + self.vy * dt
+        new_hitbox = Region(new_x - 54 // 2,
+                            new_y - 112 // 2,
+                            width=48,
+                            height=102)
+
+        obj_hit = self.detect_collision(new_hitbox)
+
+        if obj_hit is not None:
+            self.vx = 0
+            self.vy = 0
+            self.spr = self.i_right if self.direction == "right" else self.i_left
+            self.spr.x = self.x
+            self.spr.y = self.y
+            return
 
         self.x = new_x
         self.y = new_y
         self.spr.x = self.x
         self.spr.y = self.y
+        self.hitbox = new_hitbox
 
         # Check sprite
         if not self.moving and \
